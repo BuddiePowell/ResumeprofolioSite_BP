@@ -36,6 +36,14 @@ namespace ResumePortfolioSite.Services
 
                 _resumeDbContext.AddEducationItem(anotherEducationItem);
 
+                Education anotherEducationItem2 = new Education();
+                anotherEducationItem2.SchoolName = "UW Plateville";
+                anotherEducationItem2.StartYear = 2025;
+                anotherEducationItem2.StartMonth = "September";
+                anotherEducationItem2.Degree = "BS, Biology";
+
+                _resumeDbContext.AddEducationItem(anotherEducationItem2);
+
             }
 
             // Check for Job records

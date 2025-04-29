@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResumePortfolioSite.Services;
 
+#nullable disable
+
 namespace ResumePortfolioSite.Migrations
 {
     [DbContext(typeof(ResumeDbContext))]
@@ -15,31 +17,56 @@ namespace ResumePortfolioSite.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "8.0.15")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("ResumePortfolioSite.Models.Education", b =>
                 {
                     b.Property<int>("EducationId")
                         .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
-                    b.Property<string>("Degree");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationId"));
 
-                    b.Property<string>("GraduationMonth");
+                    b.Property<string>("Degree")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("GraduationYear");
+                    b.Property<string>("GraduationMonth")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SchoolName");
+                    b.Property<int?>("GraduationYear")
+                        .HasColumnType("int");
 
-                    b.Property<string>("StartMonth");
+                    b.Property<string>("SchoolName")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StartYear");
+                    b.Property<string>("StartMonth")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StartYear")
+                        .HasColumnType("int");
 
                     b.HasKey("EducationId");
 
                     b.ToTable("Educations");
+                });
+
+            modelBuilder.Entity("ResumePortfolioSite.Models.Job", b =>
+                {
+                    b.Property<int>("JobId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("JobId"));
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("JobId");
+
+                    b.ToTable("Jobs");
                 });
 #pragma warning restore 612, 618
         }

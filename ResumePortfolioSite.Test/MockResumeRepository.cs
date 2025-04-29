@@ -38,5 +38,13 @@ namespace ResumePortfolioSite.Test
         {
             return Task.FromResult(1);
         }
+
+
+        #region Job Section
+        public List<Job> GetAllJobEntries()
+        {
+            return new List<Job>();
+        }
+        #endregion
     }
 }

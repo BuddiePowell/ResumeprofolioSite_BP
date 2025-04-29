@@ -32,7 +32,16 @@ else
 
 
 <h2>Jobs</h2>
-<p>Coming soon...</p>
+@if (Model.JobItems.Count() == 0)
+{
+    <p>Coming soon...</p>
+}
+else
+{
+    foreach (Job jobItem in Model.JobItems)
+    {
+    }
+}
 
 <hr />
 

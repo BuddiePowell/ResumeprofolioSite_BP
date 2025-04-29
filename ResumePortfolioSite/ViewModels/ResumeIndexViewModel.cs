@@ -1,4 +1,5 @@
-﻿using ResumePortfolioSite.Models;
+﻿using Newtonsoft.Json.Linq;
+using ResumePortfolioSite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace ResumePortfolioSite.ViewModels
     public class ResumeIndexViewModel
     {
         public List<Education> EducationItems { get; set; } = new List<Education>();
+        public List<Job> JobItems { get; set; } = new List<Job>();
     }
 }

@@ -37,6 +37,16 @@ namespace ResumePortfolioSite.Services
                 _resumeDbContext.AddEducationItem(anotherEducationItem);
 
             }
-        }
+
+            // Check for Job records
+            if (!_resumeDbContext.AnyJobItemsExist())
+            {
+                Job jobItem = new Job();
+                jobItem.Company = "Example Company";
+
+                _resumeDbContext.AddJobItem(jobItem);
+            }
+
+            }
     }
 }

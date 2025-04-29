@@ -16,6 +16,7 @@ namespace ResumePortfolioSite.Services
         }
 
         DbSet<Education> Educations { get; set; }
+        DbSet<Job> Jobs { get; set; }
 
         #region Education methods
         public List<Education> GetAllEducationEntries()
@@ -71,6 +72,22 @@ namespace ResumePortfolioSite.Services
         private bool EducationItemExists(int id)
         {
             return Educations.Any(e => e.EducationId == id);
+        }
+
+        public List<Job> GetAllJobEntries()
+        {
+            return Jobs.ToList();
+        }
+
+        internal bool AnyJobItemsExist()
+        {
+            return Jobs.Any();
+        }
+
+        public void AddJobItem(Job jobItem)
+        {
+            Jobs.Add(jobItem);
+            SaveChanges();
         }
         #endregion
     }

@@ -13,5 +13,10 @@ namespace ResumePortfolioSite.Services
         void RemoveEducationItem(Education education);
 
         List<Job> GetAllJobEntries();
+        Task<Job> FindJobItemAsync(int id);
+        Task<int> UpdateJobItem(int id, Job job);
+        void AddJobItem(Job jobItem);
+        void RemoveJobItem(Job job);
     }
+
 }

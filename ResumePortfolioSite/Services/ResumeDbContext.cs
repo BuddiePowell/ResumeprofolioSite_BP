@@ -89,6 +89,46 @@ namespace ResumePortfolioSite.Services
             Jobs.Add(jobItem);
             SaveChanges();
         }
+
+        public async Task<Job> FindJobItemAsync(int id)
+        {
+            return await Jobs.FindAsync(id);
+        }
+
+        public async Task<int> UpdateJobItem(
+            int id,
+            Job job)
+        {
+            Entry(job).State = EntityState.Modified;
+
+            try
+            {
+                await SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!JobItemExists(id))
+                {
+                    return -1;
+                }
+
+                throw;
+            }
+
+            return job.JobId;
+        }
+
+        public void RemoveJobItem(Job job)
+        {
+            Jobs.Remove(job);
+            SaveChanges();
+        }
+
+        private bool JobItemExists(int id)
+        {
+            return Jobs.Any(job => job.JobId == id);
+        }
+
         #endregion
     }
 }

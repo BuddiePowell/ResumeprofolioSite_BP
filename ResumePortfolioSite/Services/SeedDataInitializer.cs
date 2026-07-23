@@ -52,11 +52,18 @@ namespace ResumePortfolioSite.Services
             if (!_resumeDbContext.AnyJobItemsExist())
             {
                 Job jobItem = new Job();
-                jobItem.Company = "Example Company";
-
+                jobItem.Company = "Target";
                 _resumeDbContext.AddJobItem(jobItem);
+
+                Job anotherJobItem = new Job();
+                anotherJobItem.Company = "Amazon";
+                _resumeDbContext.AddJobItem(anotherJobItem);
+
+                Job anotherJobItem2 = new Job();
+                anotherJobItem2.Company = "UW Health";
+                _resumeDbContext.AddJobItem(anotherJobItem2);
             }
 
-            }
+        }
     }
 }

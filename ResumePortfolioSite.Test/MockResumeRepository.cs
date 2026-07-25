@@ -68,17 +68,17 @@ namespace ResumePortfolioSite.Test
         #endregion
 
         private List<Job> _jobs = new List<Job>()
-        {
-            new Job
-            {
-                JobId = 1
-                // Add your other Job properties here
-            },
-            new Job
-            {
-                JobId = 2
-                // Add your other Job properties here
-            }
-        };
+{
+    new Job
+    {
+        JobId = 1,
+        Company = "Hy-Vee"
+    },
+    new Job
+    {
+        JobId = 2,
+        Company = "Target"
+    }
+};
     }
 }

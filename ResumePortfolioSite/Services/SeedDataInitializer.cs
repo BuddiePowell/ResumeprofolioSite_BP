@@ -19,7 +19,7 @@ namespace ResumePortfolioSite.Services
         {
             // This is where we can add data to the database
 
-         
+
             if (!_resumeDbContext.AnyEducationItemsExist())
             {
                 Education educationItem = new Education();
@@ -45,25 +45,31 @@ namespace ResumePortfolioSite.Services
                 anotherEducationItem2.Degree = "BS, Computer Sciences";
 
                 _resumeDbContext.AddEducationItem(anotherEducationItem2);
-            
-        }
+
+            }
 
             // Check for Job records
             if (!_resumeDbContext.AnyJobItemsExist())
             {
                 Job jobItem = new Job();
                 jobItem.Company = "Target";
+
                 _resumeDbContext.AddJobItem(jobItem);
 
+
                 Job anotherJobItem = new Job();
-                anotherJobItem.Company = "Amazon";
+                anotherJobItem.Company = "Walmart";
+               
+
                 _resumeDbContext.AddJobItem(anotherJobItem);
 
+
                 Job anotherJobItem2 = new Job();
-                anotherJobItem2.Company = "UW Health";
+                anotherJobItem2.Company = "Festival Foods";
+              
+
                 _resumeDbContext.AddJobItem(anotherJobItem2);
             }
-
         }
     }
 }

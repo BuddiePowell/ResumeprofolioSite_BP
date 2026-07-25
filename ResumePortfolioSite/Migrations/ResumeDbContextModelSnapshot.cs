@@ -64,6 +64,15 @@ namespace ResumePortfolioSite.Migrations
                     b.Property<string>("Company")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("EndYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StartYear")
+                        .HasColumnType("int");
+
                     b.HasKey("JobId");
 
                     b.ToTable("Jobs");

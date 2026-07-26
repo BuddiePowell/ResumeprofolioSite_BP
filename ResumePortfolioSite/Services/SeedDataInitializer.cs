@@ -59,15 +59,13 @@ namespace ResumePortfolioSite.Services
 
                 Job anotherJobItem = new Job();
                 anotherJobItem.Company = "Walmart";
-               
 
                 _resumeDbContext.AddJobItem(anotherJobItem);
 
 
                 Job anotherJobItem2 = new Job();
                 anotherJobItem2.Company = "Festival Foods";
-              
-
+           
                 _resumeDbContext.AddJobItem(anotherJobItem2);
             }
         }

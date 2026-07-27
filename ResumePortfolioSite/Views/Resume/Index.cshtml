@@ -41,13 +41,36 @@ else
 {
     foreach (Job jobItem in Model.JobItems)
     {
+        string endYear = "Present";
+
+        if (jobItem.EndYear != null)
+        {
+            endYear = jobItem.EndYear.ToString();
+        }
+
         <h3>@jobItem.Company</h3>
+        <p>@jobItem.Position</p>
+        <p>@jobItem.StartYear to @endYear</p>
+        <p>@jobItem.Description</p>
+        <br />
     }
 }
-
 <hr />
 
 <h2>Skills</h2>
-<p>Coming soon...</p>
 
+@if (Model.SkillItems.Count() == 0)
+{
+    <p>Coming soon...</p>
+}
+else
+{
+    foreach (Skill skillItem in Model.SkillItems)
+    {
+        <h3>@skillItem.Name</h3>
+        <p>@skillItem.Category</p>
+        <p>@skillItem.ExperienceLevel</p>
+        <br />
+    }
+}
 <br />

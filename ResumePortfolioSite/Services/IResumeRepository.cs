@@ -6,12 +6,14 @@ namespace ResumePortfolioSite.Services
 {
     public interface IResumeRepository
     {
+        // Education
         List<Education> GetAllEducationEntries();
         Task<Education> FindEducationItemAsync(int id);
         Task<int> UpdateEducationItem(int id, Education education);
         void AddEducationItem(Education educationItem);
         void RemoveEducationItem(Education education);
 
+        // Jobs
         List<Job> GetAllJobEntries();
         Task<Job> FindJobItemAsync(int id);
         Task<int> UpdateJobItem(int id, Job job);

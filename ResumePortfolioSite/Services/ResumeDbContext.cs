@@ -17,7 +17,7 @@ namespace ResumePortfolioSite.Services
         DbSet<Job> Jobs { get; set; }
         DbSet<Skill> Skills { get; set; }
 
-        // ---------------- EDUCATION ----------------
+        // Education Methods
 
         public List<Education> GetAllEducationEntries()
         {
@@ -73,7 +73,7 @@ namespace ResumePortfolioSite.Services
         }
 
 
-        // ---------------- JOBS ----------------
+        // Jobs methods
 
         public List<Job> GetAllJobEntries()
         {
@@ -129,7 +129,7 @@ namespace ResumePortfolioSite.Services
         }
 
 
-        // ---------------- SKILLS ----------------
+        // Skills Methods
 
         public List<Skill> GetAllSkillEntries()
         {

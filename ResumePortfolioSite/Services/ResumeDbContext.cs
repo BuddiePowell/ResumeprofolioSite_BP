@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ResumePortfolioSite.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,27 +11,22 @@ namespace ResumePortfolioSite.Services
         public ResumeDbContext(DbContextOptions<ResumeDbContext> options)
             : base(options)
         {
-
         }
 
         DbSet<Education> Educations { get; set; }
         DbSet<Job> Jobs { get; set; }
+        DbSet<Skill> Skills { get; set; }
 
-        #region Education methods
+        // ---------------- EDUCATION ----------------
+
         public List<Education> GetAllEducationEntries()
         {
             return Educations.ToList();
         }
 
-        public bool AnyEducationItemsExist()
+        public async Task<Education> FindEducationItemAsync(int id)
         {
-            return Educations.Any();
-        }
-
-        public void AddEducationItem(Education educationItem)
-        {
-            Educations.Add(educationItem);
-            SaveChanges();
+            return await Educations.FindAsync(id);
         }
 
         public async Task<int> UpdateEducationItem(int id, Education education)
@@ -49,18 +43,17 @@ namespace ResumePortfolioSite.Services
                 {
                     return -1;
                 }
-                else
-                {
-                    throw;
-                }
+
+                throw;
             }
 
             return education.EducationId;
         }
 
-        public async Task<Education> FindEducationItemAsync(int id)
+        public void AddEducationItem(Education educationItem)
         {
-            return await Educations.FindAsync(id);
+            Educations.Add(educationItem);
+            SaveChanges();
         }
 
         public void RemoveEducationItem(Education education)
@@ -69,25 +62,22 @@ namespace ResumePortfolioSite.Services
             SaveChanges();
         }
 
+        public bool AnyEducationItemsExist()
+        {
+            return Educations.Any();
+        }
+
         private bool EducationItemExists(int id)
         {
             return Educations.Any(e => e.EducationId == id);
         }
 
+
+        // ---------------- JOBS ----------------
+
         public List<Job> GetAllJobEntries()
         {
             return Jobs.ToList();
-        }
-
-        internal bool AnyJobItemsExist()
-        {
-            return Jobs.Any();
-        }
-
-        public void AddJobItem(Job jobItem)
-        {
-            Jobs.Add(jobItem);
-            SaveChanges();
         }
 
         public async Task<Job> FindJobItemAsync(int id)
@@ -95,9 +85,7 @@ namespace ResumePortfolioSite.Services
             return await Jobs.FindAsync(id);
         }
 
-        public async Task<int> UpdateJobItem(
-            int id,
-            Job job)
+        public async Task<int> UpdateJobItem(int id, Job job)
         {
             Entry(job).State = EntityState.Modified;
 
@@ -118,17 +106,82 @@ namespace ResumePortfolioSite.Services
             return job.JobId;
         }
 
+        public void AddJobItem(Job jobItem)
+        {
+            Jobs.Add(jobItem);
+            SaveChanges();
+        }
+
         public void RemoveJobItem(Job job)
         {
             Jobs.Remove(job);
             SaveChanges();
         }
 
-        private bool JobItemExists(int id)
+        public bool AnyJobItemsExist()
         {
-            return Jobs.Any(job => job.JobId == id);
+            return Jobs.Any();
         }
 
-        #endregion
+        private bool JobItemExists(int id)
+        {
+            return Jobs.Any(j => j.JobId == id);
+        }
+
+
+        // ---------------- SKILLS ----------------
+
+        public List<Skill> GetAllSkillEntries()
+        {
+            return Skills.ToList();
+        }
+
+        public async Task<Skill> FindSkillItemAsync(int id)
+        {
+            return await Skills.FindAsync(id);
+        }
+
+        public async Task<int> UpdateSkillItem(int id, Skill skill)
+        {
+            Entry(skill).State = EntityState.Modified;
+
+            try
+            {
+                await SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!SkillItemExists(id))
+                {
+                    return -1;
+                }
+
+                throw;
+            }
+
+            return skill.SkillId;
+        }
+
+        public void AddSkillItem(Skill skillItem)
+        {
+            Skills.Add(skillItem);
+            SaveChanges();
+        }
+
+        public void RemoveSkillItem(Skill skill)
+        {
+            Skills.Remove(skill);
+            SaveChanges();
+        }
+
+        public bool AnySkillItemsExist()
+        {
+            return Skills.Any();
+        }
+
+        private bool SkillItemExists(int id)
+        {
+            return Skills.Any(s => s.SkillId == id);
+        }
     }
 }

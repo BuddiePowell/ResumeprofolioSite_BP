@@ -2,16 +2,16 @@
 using ResumePortfolioSite.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ResumePortfolioSite.Test
 {
     public class MockResumeRepository : IResumeRepository
     {
+        #region Education Section
+
         public void AddEducationItem(Education educationItem)
         {
-
         }
 
         public bool AnyEducationItemsExist()
@@ -31,7 +31,6 @@ namespace ResumePortfolioSite.Test
 
         public void RemoveEducationItem(Education education)
         {
-
         }
 
         public Task<int> UpdateEducationItem(int id, Education education)
@@ -39,8 +38,11 @@ namespace ResumePortfolioSite.Test
             return Task.FromResult(1);
         }
 
+        #endregion
+
 
         #region Job Section
+
         public List<Job> GetAllJobEntries()
         {
             return new List<Job>();
@@ -48,37 +50,50 @@ namespace ResumePortfolioSite.Test
 
         public Task<Job> FindJobItemAsync(int id)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(new Job());
         }
 
         public Task<int> UpdateJobItem(int id, Job job)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(1);
         }
 
         public void AddJobItem(Job jobItem)
         {
-            throw new NotImplementedException();
         }
 
         public void RemoveJobItem(Job job)
         {
-            throw new NotImplementedException();
         }
+
         #endregion
 
-        private List<Job> _jobs = new List<Job>()
-{
-    new Job
-    {
-        JobId = 1,
-        Company = "Hy-Vee"
-    },
-    new Job
-    {
-        JobId = 2,
-        Company = "Target"
-    }
-};
+
+        #region Skill Section
+
+        public void AddSkillItem(Skill skillItem)
+        {
+        }
+
+        public Task<Skill> FindSkillItemAsync(int id)
+        {
+            return Task.FromResult(new Skill());
+        }
+
+        public List<Skill> GetAllSkillEntries()
+        {
+            return new List<Skill>();
+        }
+
+        public void RemoveSkillItem(Skill skill)
+        {
+        }
+
+        public Task<int> UpdateSkillItem(int id, Skill skill)
+        {
+            return Task.FromResult(1);
+        }
+
+        #endregion
     }
 }

@@ -12,5 +12,12 @@ namespace ResumePortfolioSite.Models
             public int JobId { get; set; }
 
             public string Company { get; set; }
-        }
+
+            public string Position { get; set; }
+            public int StartYear { get; set; }
+
+        public int? EndYear { get; set; }
+
+        public string Description { get; set; }
+    }
     }

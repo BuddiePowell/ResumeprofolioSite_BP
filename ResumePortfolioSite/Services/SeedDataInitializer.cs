@@ -65,8 +65,23 @@ namespace ResumePortfolioSite.Services
 
                 Job anotherJobItem2 = new Job();
                 anotherJobItem2.Company = "Festival Foods";
-           
+
                 _resumeDbContext.AddJobItem(anotherJobItem2);
+            }
+        
+            if (!_resumeDbContext.AnySkillItemsExist())
+            {
+                Skill skillItem = new Skill();
+                skillItem.Name = "C#";
+                _resumeDbContext.AddSkillItem(skillItem);
+
+                Skill anotherSkillItem = new Skill();
+                anotherSkillItem.Name = "Java";
+                _resumeDbContext.AddSkillItem(anotherSkillItem);
+
+                Skill anotherSkillItem2 = new Skill();
+                anotherSkillItem2.Name = "SQL";
+                _resumeDbContext.AddSkillItem(anotherSkillItem2);
             }
         }
     }

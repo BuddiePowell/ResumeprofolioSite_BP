@@ -80,6 +80,29 @@ namespace ResumePortfolioSite.Migrations
 
                     b.ToTable("Jobs");
                 });
+
+            modelBuilder.Entity("ResumePortfolioSite.Models.Skill", b =>
+                {
+                    b.Property<int>("SkillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"));
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExperienceLevel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SkillId");
+
+                    b.ToTable("Skills");
+                });
 #pragma warning restore 612, 618
         }
     }

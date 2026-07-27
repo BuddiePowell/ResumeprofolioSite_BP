@@ -11,5 +11,7 @@ namespace ResumePortfolioSite.ViewModels
     {
         public List<Education> EducationItems { get; set; } = new List<Education>();
         public List<Job> JobItems { get; set; } = new List<Job>();
+
+        public List<Skill> SkillItems { get; set; } = new List<Skill>();
     }
 }

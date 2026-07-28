@@ -2,14 +2,13 @@
 using ResumePortfolioSite.Services;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ResumePortfolioSite.Test
 {
     public class MockResumeRepository : IResumeRepository
     {
-        #region Education Section
-
         public void AddEducationItem(Education educationItem)
         {
         }
@@ -38,14 +37,14 @@ namespace ResumePortfolioSite.Test
             return Task.FromResult(1);
         }
 
-        #endregion
 
-
-        #region Job Section
-
-        public List<Job> GetAllJobEntries()
+        public void AddJobItem(Job jobItem)
         {
-            return new List<Job>();
+        }
+
+        public bool AnyJobItemsExist()
+        {
+            return true;
         }
 
         public Task<Job> FindJobItemAsync(int id)
@@ -53,26 +52,28 @@ namespace ResumePortfolioSite.Test
             return Task.FromResult(new Job());
         }
 
-        public Task<int> UpdateJobItem(int id, Job job)
+        public List<Job> GetAllJobEntries()
         {
-            return Task.FromResult(1);
-        }
-
-        public void AddJobItem(Job jobItem)
-        {
+            return new List<Job>();
         }
 
         public void RemoveJobItem(Job job)
         {
         }
 
-        #endregion
+        public Task<int> UpdateJobItem(int id, Job job)
+        {
+            return Task.FromResult(1);
+        }
 
-
-        #region Skill Section
 
         public void AddSkillItem(Skill skillItem)
         {
+        }
+
+        public bool AnySkillItemsExist()
+        {
+            return true;
         }
 
         public Task<Skill> FindSkillItemAsync(int id)
@@ -93,7 +94,5 @@ namespace ResumePortfolioSite.Test
         {
             return Task.FromResult(1);
         }
-
-        #endregion
     }
 }

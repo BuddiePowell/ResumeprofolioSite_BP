@@ -1,7 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ResumePortfolioSite.Controllers.api;
 using ResumePortfolioSite.Models;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ResumePortfolioSite.Test
 {

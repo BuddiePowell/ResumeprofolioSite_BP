@@ -26,56 +26,67 @@ namespace ResumePortfolioSite.Controllers.api
 
         // GET: api/Skills/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Skill>> GetSkill(int id)
+        public async Task<IActionResult> GetSkill([FromRoute] int id)
         {
-            Skill skill = await _resumeRepository.FindSkillItemAsync(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var skill = await _resumeRepository.FindSkillItemAsync(id);
 
             if (skill == null)
             {
                 return NotFound();
             }
 
-            return skill;
+            return Ok(skill);
         }
 
         // PUT: api/Skills/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSkill(int id, Skill skill)
+        public async Task<IActionResult> PutSkill([FromRoute] int id, [FromBody] Skill skill)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (id != skill.SkillId)
             {
                 return BadRequest();
             }
 
-            int updatedSkillId =
-                await _resumeRepository.UpdateSkillItem(id, skill);
-
-            if (updatedSkillId == -1)
-            {
-                return NotFound();
-            }
+            var resultId = await _resumeRepository.UpdateSkillItem(id, skill);
 
             return NoContent();
         }
 
         // POST: api/Skills
         [HttpPost]
-        public ActionResult<Skill> PostSkill(Skill skill)
+        public IActionResult PostSkill([FromBody] Skill skill)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _resumeRepository.AddSkillItem(skill);
 
-            return CreatedAtAction(
-                nameof(GetSkill),
-                new { id = skill.SkillId },
-                skill);
+            return CreatedAtAction("GetSkill",
+                new { id = skill.SkillId }, skill);
         }
 
         // DELETE: api/Skills/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSkill(int id)
+        public async Task<IActionResult> DeleteSkill([FromRoute] int id)
         {
-            Skill skill =
-                await _resumeRepository.FindSkillItemAsync(id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var skill = await _resumeRepository.FindSkillItemAsync(id);
 
             if (skill == null)
             {
@@ -84,7 +95,7 @@ namespace ResumePortfolioSite.Controllers.api
 
             _resumeRepository.RemoveSkillItem(skill);
 
-            return NoContent();
+            return Ok(skill);
         }
     }
 }

@@ -11,12 +11,10 @@ namespace ResumePortfolioSite.Models
        
             public int SkillId { get; set; }
 
-            [Required]
             public string Name { get; set; }
 
+            public string Category { get; set; }
 
-             public string Category { get; set; }
-
-              public string ExperienceLevel { get; set; }
+            public string ExperienceLevel { get; set; }
     }
     }
